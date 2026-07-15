@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Postman Lite — A lightweight, browser-based API testing tool for developers. Build HTTP requests, send them through a proxy, and view formatted responses." />
+  <meta name="theme-color" content="#0d1117" />
+
+  <title>Postman Lite — API Testing Tool</title>
+
+  <!-- Stylesheets (order matters: theme tokens → layout → components) -->
+  <link rel="stylesheet" href="styles/theme.css" />
+  <link rel="stylesheet" href="styles/layout.css" />
+  <link rel="stylesheet" href="styles/components.css" />
+
+  <!-- Favicon (inline SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+</head>
+<body>
+  <!-- 
+    ============================================================================
+    POSTMAN LITE — Application Shell
+    ============================================================================
+    This is the HTML skeleton. All dynamic content is rendered by JavaScript
+    components in /components/. The shell defines the layout regions:
+      - Top bar (tabs, env selector, theme toggle)
+      - Sidebar (collections, history, environments)
+      - Workspace (request builder + response viewer)
+    ============================================================================
+  -->
+
+  <div id="app">
+    <!-- ===== Top Navigation Bar ===== -->
+    <header class="top-bar" id="top-bar" role="banner">
+      <!-- Populated by TabsBar component -->
+    </header>
+
+    <!-- ===== Main Content (Sidebar + Workspace) ===== -->
+    <main class="main-content" role="main">
+      
+      <!-- Sidebar Overlay (mobile/tablet) -->
+      <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+      <!-- Left Sidebar -->
+      <aside class="sidebar" id="sidebar" role="complementary" aria-label="Explorer panel">
+        <!-- Populated by Sidebar component -->
+      </aside>
+
+      <!-- Workspace (Request Builder + Response Viewer) -->
+      <section class="workspace" aria-label="Request workspace">
+        
+        <!-- Request Builder Panel -->
+        <div class="request-panel" id="request-panel" role="region" aria-label="Request builder">
+          <!-- Populated by RequestBuilder component -->
+        </div>
+
+        <!-- Resizable divider -->
+        <div class="resize-handle" id="resize-handle" role="separator" aria-label="Resize panels"></div>
+
+        <!-- Response Viewer Panel -->
+        <div class="response-panel" id="response-panel" role="region" aria-label="Response viewer">
+          <!-- Populated by ResponseViewer component -->
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <!-- Main application script (ES module) -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
