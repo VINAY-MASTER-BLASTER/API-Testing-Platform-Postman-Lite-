@@ -4,7 +4,6 @@
 
 ![Tech Stack](https://img.shields.io/badge/Stack-Node.js%20%2B%20Express%20%2B%20Vanilla%20JS-blueviolet)
 ![Database](https://img.shields.io/badge/Database-None%20(Flat%20Files)-green)
-![License](https://img.shields.io/badge/License-MIT-blue)
 
 ---
 
@@ -235,4 +234,4 @@ postman-lite/
 
 ## 📄 License
 
-MIT — Built for Thunder Hackathon 4.0
+Built for Thunder Hackathon 4.0
