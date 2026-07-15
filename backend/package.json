@@ -1,0 +1,17 @@
+{
+  "name": "postman-lite-backend",
+  "version": "1.0.0",
+  "description": "Lightweight API testing tool backend — request-forwarding proxy with flat-file persistence",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "uuid": "^9.0.0"
+  },
+  "keywords": ["api", "testing", "proxy", "postman"],
+  "license": "MIT"
+}

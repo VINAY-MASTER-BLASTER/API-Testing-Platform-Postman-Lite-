@@ -1,0 +1,11 @@
+{
+  "name": "postman-lite",
+  "version": "1.0.0",
+  "description": "Lightweight browser-based API testing tool — a mini Postman built for Thunder Hackathon 4.0",
+  "scripts": {
+    "start": "cd backend && node app.js",
+    "dev": "cd backend && node app.js"
+  },
+  "keywords": ["api", "testing", "proxy", "postman", "hackathon"],
+  "license": "MIT"
+}
