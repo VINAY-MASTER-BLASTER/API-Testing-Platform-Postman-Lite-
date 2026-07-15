@@ -1,0 +1,229 @@
+/* ============================================================================
+ * THEME.CSS — Design System for Postman Lite
+ * ============================================================================
+ * 
+ * Design philosophy:
+ * - Modern dark theme (default) with optional light mode
+ * - Purple/blue accent palette for a professional developer-tool feel
+ * - Glassmorphism panels with subtle backdrop blur
+ * - Consistent spacing scale and typography
+ * - Color-coded HTTP methods and status codes for instant recognition
+ * ============================================================================ */
+
+/* --- Google Fonts import --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+/* ============================================================================
+ * CSS Custom Properties (Design Tokens)
+ * ============================================================================ */
+:root {
+  /* --- Typography --- */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+
+  /* --- Spacing scale (4px base) --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* --- Border radius --- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* --- Transitions --- */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  /* --- Shadows --- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px rgba(124, 77, 255, 0.15);
+
+  /* --- Z-index scale --- */
+  --z-sidebar: 100;
+  --z-tabs: 200;
+  --z-dropdown: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+
+  /* --- Sidebar width --- */
+  --sidebar-width: 280px;
+  --sidebar-collapsed-width: 0px;
+  --tabs-bar-height: 42px;
+}
+
+/* ============================================================================
+ * Dark Theme (Default)
+ * ============================================================================ */
+[data-theme="dark"], :root {
+  /* --- Background layers (darkest → lightest) --- */
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary: #1c2333;
+  --bg-elevated: #21283b;
+  --bg-hover: #2d3548;
+  --bg-active: #363f55;
+
+  /* --- Text --- */
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --text-tertiary: #6e7681;
+  --text-inverse: #0d1117;
+
+  /* --- Borders --- */
+  --border-primary: #30363d;
+  --border-secondary: #21262d;
+  --border-focus: #7c4dff;
+
+  /* --- Accent colors (purple/blue) --- */
+  --accent-primary: #7c4dff;
+  --accent-primary-hover: #9370ff;
+  --accent-primary-active: #6535e0;
+  --accent-secondary: #448aff;
+  --accent-gradient: linear-gradient(135deg, #7c4dff 0%, #448aff 100%);
+
+  /* --- HTTP Method colors --- */
+  --method-get: #4caf50;
+  --method-post: #448aff;
+  --method-put: #ff9800;
+  --method-patch: #ab47bc;
+  --method-delete: #f44336;
+  --method-query: #26a69a;
+
+  /* --- Status code colors --- */
+  --status-2xx: #4caf50;
+  --status-3xx: #448aff;
+  --status-4xx: #ff9800;
+  --status-5xx: #f44336;
+
+  /* --- Semantic colors --- */
+  --color-success: #4caf50;
+  --color-warning: #ff9800;
+  --color-error: #f44336;
+  --color-info: #448aff;
+
+  /* --- Glassmorphism --- */
+  --glass-bg: rgba(22, 27, 34, 0.85);
+  --glass-border: rgba(48, 54, 61, 0.5);
+  --glass-blur: 12px;
+
+  /* --- Scrollbar --- */
+  --scrollbar-track: #161b22;
+  --scrollbar-thumb: #30363d;
+  --scrollbar-thumb-hover: #484f58;
+
+  /* --- Input fields --- */
+  --input-bg: #0d1117;
+  --input-border: #30363d;
+  --input-focus-border: #7c4dff;
+  --input-placeholder: #484f58;
+}
+
+/* ============================================================================
+ * Light Theme
+ * ============================================================================ */
+[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f6f8fa;
+  --bg-tertiary: #eef1f5;
+  --bg-elevated: #ffffff;
+  --bg-hover: #e8ecf1;
+  --bg-active: #dce1e8;
+
+  --text-primary: #1f2937;
+  --text-secondary: #57606a;
+  --text-tertiary: #8b949e;
+  --text-inverse: #ffffff;
+
+  --border-primary: #d0d7de;
+  --border-secondary: #e1e4e8;
+  --border-focus: #7c4dff;
+
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(208, 215, 222, 0.5);
+
+  --scrollbar-track: #f6f8fa;
+  --scrollbar-thumb: #d0d7de;
+  --scrollbar-thumb-hover: #afb8c1;
+
+  --input-bg: #ffffff;
+  --input-border: #d0d7de;
+  --input-focus-border: #7c4dff;
+  --input-placeholder: #afb8c1;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+  --shadow-glow: 0 0 20px rgba(124, 77, 255, 0.1);
+}
+
+/* ============================================================================
+ * Base Resets
+ * ============================================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* ============================================================================
+ * Custom Scrollbar
+ * ============================================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* ============================================================================
+ * Selection
+ * ============================================================================ */
+::selection {
+  background: rgba(124, 77, 255, 0.3);
+  color: var(--text-primary);
+}

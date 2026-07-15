@@ -1,0 +1,404 @@
+/* ============================================================================
+ * LAYOUT.CSS — Application Layout
+ * ============================================================================
+ * 
+ * Three-column layout inspired by Postman/Insomnia/Thunder Client:
+ *   LEFT: Sidebar (collections, history, environments)
+ *   CENTER: Request builder (method + URL + tabs)
+ *   BOTTOM: Response viewer (below the request builder)
+ * 
+ * Responsive behavior:
+ *   Desktop (>1024px): sidebar visible, full layout
+ *   Tablet (768-1024px): sidebar as overlay drawer
+ *   Mobile (<768px): sidebar as full-screen drawer, stacked layout
+ * ============================================================================ */
+
+/* --- App Container --- */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* --- Top Bar (environment selector, theme toggle, etc.) --- */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--tabs-bar-height);
+  padding: 0 var(--space-4);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-primary);
+  z-index: var(--z-tabs);
+  flex-shrink: 0;
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.top-bar-center {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 1;
+  margin: 0 var(--space-4);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.top-bar-center::-webkit-scrollbar {
+  display: none;
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.app-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--accent-primary);
+  white-space: nowrap;
+  cursor: default;
+}
+
+.app-logo svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* --- Main Content Area --- */
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-primary);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: width var(--transition-normal), min-width var(--transition-normal), transform var(--transition-normal);
+  z-index: var(--z-sidebar);
+}
+
+.sidebar.collapsed {
+  width: 0;
+  min-width: 0;
+  border-right: none;
+  overflow: hidden;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border-primary);
+  flex-shrink: 0;
+}
+
+.sidebar-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-primary);
+  flex-shrink: 0;
+}
+
+.sidebar-tab {
+  flex: 1;
+  padding: var(--space-2) var(--space-3);
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border-bottom: 2px solid transparent;
+  font-family: var(--font-sans);
+}
+
+.sidebar-tab:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.sidebar-tab.active {
+  color: var(--accent-primary);
+  border-bottom-color: var(--accent-primary);
+}
+
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-2);
+}
+
+.sidebar-actions {
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--border-primary);
+  flex-shrink: 0;
+}
+
+/* --- Workspace --- */
+.workspace {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* --- Request Panel --- */
+.request-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 200px;
+  overflow: hidden;
+}
+
+/* --- URL Bar Row --- */
+.url-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-primary);
+  flex-shrink: 0;
+}
+
+.method-selector {
+  flex-shrink: 0;
+}
+
+.url-input-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.url-input {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  transition: border-color var(--transition-fast);
+  outline: none;
+}
+
+.url-input:focus {
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 0 3px rgba(124, 77, 255, 0.15);
+}
+
+.url-input::placeholder {
+  color: var(--input-placeholder);
+}
+
+/* --- Request Tabs (Params, Headers, Auth, Body) --- */
+.request-tabs {
+  display: flex;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-primary);
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+
+.request-tab {
+  padding: var(--space-2) var(--space-4);
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  font-family: var(--font-sans);
+}
+
+.request-tab:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.request-tab.active {
+  color: var(--accent-primary);
+  border-bottom-color: var(--accent-primary);
+}
+
+.request-tab .badge {
+  margin-left: var(--space-1);
+  padding: 1px 6px;
+  font-size: 0.7rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-active);
+  color: var(--text-secondary);
+}
+
+/* --- Request Tab Content --- */
+.request-tab-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4);
+  background: var(--bg-primary);
+}
+
+/* --- Response Panel --- */
+.response-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+  border-top: 3px solid var(--border-primary);
+  flex: 1;
+  overflow: hidden;
+}
+
+.response-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) var(--space-4);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-primary);
+  flex-shrink: 0;
+  gap: var(--space-3);
+}
+
+.response-status-bar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.response-status-bar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.response-tabs {
+  display: flex;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-primary);
+  flex-shrink: 0;
+}
+
+.response-tab {
+  padding: var(--space-2) var(--space-4);
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border-bottom: 2px solid transparent;
+  font-family: var(--font-sans);
+}
+
+.response-tab:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.response-tab.active {
+  color: var(--accent-primary);
+  border-bottom-color: var(--accent-primary);
+}
+
+.response-body {
+  flex: 1;
+  overflow: auto;
+  padding: var(--space-4);
+  background: var(--bg-primary);
+}
+
+/* --- Drag handle between request/response --- */
+.resize-handle {
+  height: 4px;
+  background: var(--border-primary);
+  cursor: row-resize;
+  transition: background var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.resize-handle:hover {
+  background: var(--accent-primary);
+}
+
+/* --- Sidebar overlay (mobile) --- */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: calc(var(--z-sidebar) - 1);
+}
+
+/* ============================================================================
+ * Responsive Breakpoints
+ * ============================================================================ */
+
+/* Tablet: sidebar as overlay */
+@media (max-width: 1024px) {
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    transform: translateX(0);
+    z-index: var(--z-sidebar);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .sidebar.collapsed {
+    transform: translateX(-100%);
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
+  }
+
+  .sidebar-overlay.visible {
+    display: block;
+  }
+}
+
+/* Mobile: stacked layout */
+@media (max-width: 768px) {
+  .url-bar {
+    flex-wrap: wrap;
+  }
+
+  .method-selector {
+    width: 100%;
+  }
+
+  .url-input-wrapper {
+    width: 100%;
+  }
+
+  .request-tabs {
+    overflow-x: auto;
+  }
+}
