@@ -6,6 +6,15 @@
     "start": "cd backend && node app.js",
     "dev": "cd backend && node app.js"
   },
-  "keywords": ["api", "testing", "proxy", "postman", "hackathon"],
-  "license": "MIT"
+  "keywords": [
+    "api",
+    "testing",
+    "proxy",
+    "postman",
+    "hackathon"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
