@@ -1,0 +1,15 @@
+[
+  {
+    "id": "a4954ba1-98f2-4001-ad18-21dbea192509",
+    "name": "Local",
+    "variables": [
+      {
+        "key": "BASE_URL",
+        "value": "https://jsonplaceholder.typicode.com",
+        "enabled": true
+      }
+    ],
+    "createdAt": "2026-07-12T06:01:00.210Z",
+    "updatedAt": "2026-07-12T06:01:00.210Z"
+  }
+]
